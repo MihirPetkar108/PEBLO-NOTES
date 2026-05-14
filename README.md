@@ -6,16 +6,16 @@ A full-stack, production-ready notes application built with **MERN + TypeScript*
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 18 + TypeScript, Vite, TailwindCSS |
-| State | Zustand (auth/theme), TanStack Query (server state) |
-| Backend | Node.js + Express + TypeScript |
-| Database | MongoDB + Mongoose |
-| Auth | JWT (RS256), bcrypt password hashing |
-| AI | OpenAI GPT-3.5-Turbo |
-| Charts | Recharts |
-| Routing | React Router v6 |
+| Layer    | Technology                                          |
+| -------- | --------------------------------------------------- |
+| Frontend | React 18 + TypeScript, Vite, TailwindCSS            |
+| State    | Zustand (auth/theme), TanStack Query (server state) |
+| Backend  | Node.js + Express + TypeScript                      |
+| Database | MongoDB + Mongoose                                  |
+| Auth     | JWT (RS256), bcrypt password hashing                |
+| AI       | OpenAI GPT-5-Nano                                   |
+| Charts   | Recharts                                            |
+| Routing  | React Router v6                                     |
 
 ---
 
@@ -74,6 +74,7 @@ peblo-notes/
 ## Setup & Installation
 
 ### Prerequisites
+
 - Node.js 18+
 - MongoDB (local or Atlas)
 - OpenAI API key
@@ -94,6 +95,7 @@ cp .env.example .env
 ```
 
 Edit `.env`:
+
 ```env
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/peblo-notes
@@ -130,25 +132,28 @@ Frontend runs on `http://localhost:5173`
 ## API Endpoints
 
 ### Auth
-| Method | Path | Description |
-|--------|------|-------------|
-| POST | `/api/auth/signup` | Register new user |
-| POST | `/api/auth/login` | Login, returns JWT |
-| GET | `/api/auth/me` | Get current user (protected) |
+
+| Method | Path               | Description                  |
+| ------ | ------------------ | ---------------------------- |
+| POST   | `/api/auth/signup` | Register new user            |
+| POST   | `/api/auth/login`  | Login, returns JWT           |
+| GET    | `/api/auth/me`     | Get current user (protected) |
 
 ### Notes
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/notes` | List notes (with search/filter query params) |
-| POST | `/api/notes` | Create note |
-| PATCH | `/api/notes/:id` | Update note (auto-save) |
-| DELETE | `/api/notes/:id` | Delete note |
-| POST | `/api/notes/:id/generate-summary` | AI summary generation |
-| POST | `/api/notes/:id/toggle-share` | Toggle public sharing |
-| GET | `/api/notes/meta/insights` | Dashboard insights |
-| GET | `/api/notes/shared/:shareId` | Public note (no auth) |
+
+| Method | Path                              | Description                                  |
+| ------ | --------------------------------- | -------------------------------------------- |
+| GET    | `/api/notes`                      | List notes (with search/filter query params) |
+| POST   | `/api/notes`                      | Create note                                  |
+| PATCH  | `/api/notes/:id`                  | Update note (auto-save)                      |
+| DELETE | `/api/notes/:id`                  | Delete note                                  |
+| POST   | `/api/notes/:id/generate-summary` | AI summary generation                        |
+| POST   | `/api/notes/:id/toggle-share`     | Toggle public sharing                        |
+| GET    | `/api/notes/meta/insights`        | Dashboard insights                           |
+| GET    | `/api/notes/shared/:shareId`      | Public note (no auth)                        |
 
 ### Query Parameters for GET /api/notes
+
 - `search` — keyword search in title & content
 - `tags` — comma-separated tag filter
 - `category` — category filter
@@ -161,31 +166,38 @@ Frontend runs on `http://localhost:5173`
 ## Example API Responses
 
 ### POST /api/auth/login
+
 ```json
 {
-  "success": true,
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "user": {
-    "id": "USR_001",
-    "name": "John Doe",
-    "email": "john@example.com"
-  }
+    "success": true,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "user": {
+        "id": "USR_001",
+        "name": "John Doe",
+        "email": "john@example.com"
+    }
 }
 ```
 
 ### POST /api/notes/:id/generate-summary
+
 ```json
 {
-  "success": true,
-  "data": {
-    "summary": "Weekly project planning discussion covering sprint goals and blockers.",
-    "actionItems": ["Prepare UI mockups", "Review API structure", "Schedule standup"],
-    "suggestedTitle": "Sprint Planning Notes — Week 20"
-  }
+    "success": true,
+    "data": {
+        "summary": "Weekly project planning discussion covering sprint goals and blockers.",
+        "actionItems": [
+            "Prepare UI mockups",
+            "Review API structure",
+            "Schedule standup"
+        ],
+        "suggestedTitle": "Sprint Planning Notes — Week 20"
+    }
 }
 ```
 
 ### GET /api/notes/meta/insights
+
 ```json
 {
   "success": true,
@@ -212,6 +224,7 @@ Frontend runs on `http://localhost:5173`
 ## Database Schema
 
 ### User
+
 ```typescript
 {
   _id: ObjectId,
@@ -224,6 +237,7 @@ Frontend runs on `http://localhost:5173`
 ```
 
 ### Note
+
 ```typescript
 {
   _id: ObjectId,

@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --bg: #fafafa;
+        --bg-subtle: #f4f4f5;
+        --bg-card: #ffffff;
+        --border: #e4e4e7;
+        --border-strong: #d1d1d6;
+        --text: #09090b;
+        --text-muted: #71717a;
+        --text-subtle: #a1a1aa;
+        --brand: #6272f5;
+        --brand-hover: #4f52ea;
+        --brand-subtle: #e0e9ff;
+    }
+
+    .dark {
+        --bg: #0a0a0b;
+        --bg-subtle: #111113;
+        --bg-card: #18181b;
+        --border: #27272a;
+        --border-strong: #3f3f46;
+        --text: #fafafa;
+        --text-muted: #a1a1aa;
+        --text-subtle: #71717a;
+        --brand: #8098fa;
+        --brand-hover: #6272f5;
+        --brand-subtle: #1e1d51;
+    }
+
+    * {
+        border-color: var(--border);
+    }
+
+    body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: "Inter", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+        background-color: var(--brand-subtle);
+        color: var(--brand);
+    }
+}
+
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+
+    .btn-primary {
+        @apply btn bg-brand-600 text-white hover:bg-brand-700 focus-visible:ring-brand-500 dark:bg-brand-500 dark:hover:bg-brand-600;
+    }
+
+    .btn-secondary {
+        @apply btn border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text)] hover:bg-[var(--bg-subtle)];
+    }
+
+    .btn-ghost {
+        @apply btn text-[var(--text-muted)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text)];
+    }
+
+    .btn-danger {
+        @apply btn bg-red-500 text-white hover:bg-red-600;
+    }
+
+    .card {
+        @apply rounded-xl border border-[var(--border)] bg-[var(--bg-card)] shadow-sm;
+    }
+
+    .input {
+        @apply w-full rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-3 py-2 text-sm text-[var(--text)] placeholder-[var(--text-subtle)] transition-colors focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:focus:ring-brand-400/20;
+    }
+
+    .label {
+        @apply block text-sm font-medium text-[var(--text-muted)] mb-1.5;
+    }
+
+    .badge {
+        @apply inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium;
+    }
+
+    .badge-default {
+        @apply badge bg-[var(--bg-subtle)] text-[var(--text-muted)];
+    }
+
+    /* .badge-brand {
+    @apply badge bg-brand-subtle text-brand-600 dark:text-brand-300;
+  } */
+
+    .scrollbar-thin {
+        scrollbar-width: thin;
+        scrollbar-color: var(--border) transparent;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+        background-color: var(--border);
+        border-radius: 2px;
+    }
+}
+
+/* Note editor */
+.note-editor {
+    resize: none;
+    min-height: 400px;
+    font-size: 15px;
+    line-height: 1.7;
+    background: transparent;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: var(--text);
+    font-family: "Inter", system-ui, sans-serif;
+}
+
+.note-editor::placeholder {
+    color: var(--text-subtle);
+}
+
+/* Animations */
+.animate-in {
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading skeleton */
+.skeleton {
+    @apply animate-pulse rounded bg-[var(--bg-subtle)];
+}
+
+.auth-toast {
+    background: rgba(10, 10, 11, 0.94) !important;
+    color: #f4f4f5 !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 22px !important;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45) !important;
+    backdrop-filter: blur(18px);
+    min-width: 280px;
+    padding: 14px 18px !important;
+    font-size: 15px !important;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.auth-toast-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.auth-toast-icon-error {
+    background: rgba(239, 68, 68, 0.3);
+    color: #fda4af;
+}
+
+.auth-toast-icon-success {
+    background: rgba(101, 163, 13, 0.34);
+    color: #d9f99d;
+}
+
+.auth-toast-message {
+    line-height: 1.35;
+}
